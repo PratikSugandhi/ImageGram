@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-// converting the schema into collection
+// converting the schema into collections.
 const user = mongoose.model("User", userSchema); // user collection
 
 export default user;
