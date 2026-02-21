@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+// creating the schema
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+// converting the schema into collection
 const user = mongoose.model("User", userSchema); // user collection
 
 export default user;
