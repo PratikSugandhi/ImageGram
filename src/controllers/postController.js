@@ -1,4 +1,4 @@
-import { createPostService,getAllPostsService , deletePostService} from "../services/postService.js";
+import { createPostService,getAllPostsService , deletePostService, updatePostService} from "../services/postService.js";
 export async function createPost(req, res) {
     console.log(req.file); // req.file.location
     
@@ -51,6 +51,28 @@ export async function deletePost(req, res) {
             message: "Post deleted successfully",
             data: response
         })
+    } catch(error) {
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+}
+
+export async function updatePost(req, res) {
+    try {
+        console.log("req file", req.file);
+        const updateObject = req.body;
+        if(req.file) {
+            updateObject.image = req.file.location;
+        }
+        const response = await updatePostService(req.params.id, updateObject);
+        return res.status(200).json({
+            success: true,
+            message: "Post updated successfully",
+            data: response
+        });
     } catch(error) {
         console.log(error);
         return res.status(500).json({
