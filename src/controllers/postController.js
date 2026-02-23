@@ -1,4 +1,4 @@
-import { createPostService } from "../services/postService";
+import { createPostService } from "../services/postService.js";
 export async function createPost(req, res) {
     console.log(req.file); // req.file.location
     
@@ -11,5 +11,13 @@ export async function createPost(req, res) {
         success: true,
         message: "Post created successfully",
         data: post
+    });
+    
+}
+export async function getAllPosts(req, res) {
+    // return unimplemented
+    return res.status(501).json({
+        success: false,
+        message: "Not Implemented"
     });
 }

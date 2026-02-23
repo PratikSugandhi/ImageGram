@@ -1,4 +1,4 @@
-import { createPost } from "../controllers/postController";
+import { createPost } from "../controllers/postController.js";
 export const createPostService = async (createPostObejct) => {
     const caption = createPostObejct.caption?.trim();
     const image = createPostObejct.image;

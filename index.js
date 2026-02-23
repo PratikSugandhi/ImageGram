@@ -1,7 +1,7 @@
 import express from 'express';
 import connectDB from './src/config/dbConfig.js';
 import { createPost } from './src/controllers/postController.js';
-import { s3uploader } from './src/config/multerConfig.js';
+import apiRouter from './src/routers/apiRouter.js';
 
 const PORT = 3000; // port number
 
@@ -18,8 +18,7 @@ app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded());
 
-app.post('/post',s3uploader.single('image'),createPost)
-
+app.use('/api', apiRouter);// If the url starts with /api then the request is forwarded to the apiRouter
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     connectDB();
