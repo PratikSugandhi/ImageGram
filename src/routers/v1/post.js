@@ -3,14 +3,15 @@
 import express from 'express';
 
 import { s3uploader } from '../../config/multerConfig.js';
-import { createPost, getAllPosts, deletePost } from '../../controllers/postController.js';
-
+import { createPost, getAllPosts, deletePost,updatePost } from '../../controllers/postController.js';
+import {zodPostSchema} from '../../validators/zodPostSchema.js'
+import { validate } from '../../validators/zodValidator.js';
 const router = express.Router(); // Router object to modularize the routes
 
 // router.post('/', s3uploader.single('image'), createPost);
 
 router.get('/', getAllPosts);
 router.delete('/:id', deletePost);
-router.put('/:id', s3uploader.single('image'), updatePost);
+router.put('/:id', s3uploader.single('image'),validate(zodPostSchema), updatePost);
 
 export default router;

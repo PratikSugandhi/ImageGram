@@ -2,10 +2,13 @@ import express from 'express';
 import connectDB from './src/config/dbConfig.js';
 import { createPost } from './src/controllers/postController.js';
 import apiRouter from './src/routers/apiRouter.js';
+import multer from 'multer';
 
 const PORT = 3000; // port number
 
 const app = express(); // create express app server instance
+
+const upload = multer();
 
 app.get('/ping', (req, res) => {
     // this is how we can see the content passed using query like ? in url.
