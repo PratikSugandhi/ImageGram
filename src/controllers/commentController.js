@@ -1,5 +1,5 @@
 
-import { createCommentService, findCommentByIdService } from "../services/commentService";
+import { createCommentService, findCommentByIdService } from "../services/commentService.js";
 
 export async function createComment(req, res) {
     try {
