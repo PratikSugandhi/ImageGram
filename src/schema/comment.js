@@ -21,6 +21,8 @@ const commentSchema = new mongoose.Schema({
     // to decide that on what catagry this comment is liked like on reels,posts or story or comment or any other type so it is id of that catogory.
 
     // In Mongoose, refPath is used for dynamic referencing (dynamic population).Normally in Mongoose, when you use ref, you reference one fixed model.But with refPath, you can reference different models dynamically based on the value of another field.
+
+    // commentableId defines the id of the model on which like is  perform
     commentableId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

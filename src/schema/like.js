@@ -6,6 +6,7 @@ const likeSchema = new mongoose.Schema({
         required: true,
         enum: ["Post", "Comment"],
     },
+    // likeableId defines the id of the model on which like is  perform
     likeableId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
