@@ -3,17 +3,18 @@ import connectDB from './src/config/dbConfig.js';
 import { createPost } from './src/controllers/postController.js';
 import apiRouter from './src/routers/apiRouter.js';
 import multer from 'multer';
-
+import { isAuthenticated } from './src/middlewares/authMiddleware.js';
 const PORT = 3000; // port number
 
 const app = express(); // create express app server instance
 
 const upload = multer();
 
-app.get('/ping', (req, res) => {
+app.get('/ping',isAuthenticated, (req, res) => {
     // this is how we can see the content passed using query like ? in url.
      console.log(req.query);
     console.log(req.body);
+    console.log(req.user);
     return res.json({ message: 'pong' });
 });
 // here we use this so that to show how middleware chaining can be use
