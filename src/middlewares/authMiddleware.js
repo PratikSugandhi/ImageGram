@@ -36,3 +36,17 @@ export const isAuthenticated = async (req, res, next) => {
     }
 
 }
+
+export const isAdmin = async (req, res, next) => {
+    if(req.user.role !== "admin") {
+        return res.status(403).json({
+            success: false,
+            message: "Unauthorized access therefore can't edit"
+        });
+    }
+    // Now it is authorized admin panel therefore it can edit.
+
+    next();
+}
+
+// Similiar we can define more role based on different role,but in our porject we have only 2 role therefore defining only one which is isAdmin.
