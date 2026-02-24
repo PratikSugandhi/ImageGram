@@ -7,6 +7,7 @@ import { isAuthenticated } from './src/middlewares/authMiddleware.js';
 import swaggerUi from 'swagger-ui-express'
 import swaggerJSDoc from 'swagger-jsdoc';
 import { options } from './src/utilies/swaggerOptions.js';
+import { rateLimit } from 'express-rate-limit';
 import ip from 'ip'
 
 const PORT = 3000; // port number
@@ -24,6 +25,15 @@ app.get('/ping',/*isAuthenticated,*/ (req, res) => {
     const ipaddr = ip.address();
     return res.json({ message: 'pong' + ipaddr });
 });
+
+const limiter = rateLimit({
+    windowMs: 0.5 * 60 * 1000, // 30 seconds
+    max: 5 // limit each IP to 5 requests per windowMs
+});
+
+app.use(limiter); // apply rate limiter to every requests
+
+
 // here we use this so that to show how middleware chaining can be use
 app.use(express.json());
 app.use(express.text());
