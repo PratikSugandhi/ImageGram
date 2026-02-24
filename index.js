@@ -53,3 +53,11 @@ app.listen(PORT, () => {
 // client. -----> LB ------> server1
 //                   ------> server2       
 
+
+
+
+// Figure out alternatives to store jwt tokens on the client side
+
+// and impl a solution storing it with different alternatives
+
+// try to deploy both the frontend and backend and see if the jwt token based is working or not
