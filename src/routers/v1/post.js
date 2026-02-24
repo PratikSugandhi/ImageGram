@@ -11,6 +11,17 @@ const router = express.Router(); // Router object to modularize the routes
 
 // router.post('/', s3uploader.single('image'), createPost);
 
+
+/**
+ * @swagger
+ * /posts:
+ *  post:
+ *      summary: Create a new post
+ *      description: Create a new post
+ * 
+ */
+
+
 router.get('/', getAllPosts);
 router.post('/', isAuthenticated,  s3uploader.single('image'), validate(zodPostSchema), createPost);
 router.delete('/:id',isAuthenticated, deletePost);
